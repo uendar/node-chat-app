@@ -7,14 +7,6 @@ socket.on('connect', function(){
 //   })
 
 
-socket.emit('createMessage',{
-    from:'Endar',
-    text:"Yes it works dude"
-});
-
-
-
-
  });
 
 socket.on('disconnect', function(){

@@ -14,22 +14,13 @@ app.use(express.static(publicPath));
 io.on('connection', (socket)=>{
     console.log("New user connected!")
 
-    // socket.emit('newEmail', {
-    //     email:'Endar',
-    //     day:'today',
-    //     sent:true
-    // });
-   
-    socket.emit('newMessage',{
-        from:'TDB',
-        text:'Well see you then',
-        createAt:1234
-    });
-
-
      //create message event
      socket.on('createMessage',(msg)=>{
-          console.log(msg);
+         io.emit('newMessage',{
+             from:msg.from,
+             text:msg.text,
+             createAt:new Date().getTime()
+         })
      });
 
 
