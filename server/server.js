@@ -21,16 +21,13 @@ io.on('connection', (socket)=>{
     //socket.brodcase.emit 
       let user = Math.floor((Math.random() * 100) + 1);
       let from  = "Admin"+user;
-       socket.broadcast.emit('newMessage',generateMessage(from, 'New user joined the chat app'));
+      socket.broadcast.emit('newMessage',generateMessage(from, 'New user joined the chat app'));
 
      //create message event
-     socket.on('createMessage',(msg)=>{
+     socket.on('createMessage',(msg, callback)=>{
+         console.log(msg);
          io.emit('newMessage',generateMessage(msg.from, msg.text));
-        // socket.broadcast.emit('newMessage',{
-        //       from:msg.from,
-        //       text:msg.text,
-        //       createAt:new Date().getTime()
-        // });
+         callback('This is from server');
      });
 
 
